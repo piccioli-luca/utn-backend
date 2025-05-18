@@ -1,4 +1,4 @@
-import { connect, version, Schema, model } from "mongoose";
+import { connect, Schema, model } from "mongoose";
 process.loadEnvFile();
 
 // Load environment variables from .env file
@@ -156,6 +156,18 @@ const getcatbyID = async (id: string) => {
 // Currently retrieves all cats and logs them. Insert code here.
 const main = async () => {
     await connectMongoDB();
+
+    // Example cat creation.
+    /*
+    createCat({
+        name: "Mittens",
+        age: 2,
+        weight_kg: 4,
+        breed: "Siamese",
+        owner: "John Doe",
+        color: "Brown"})
+    */
+
     const cats = await getAllCats();
     console.log(cats);
 }
