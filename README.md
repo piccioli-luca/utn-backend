@@ -12,9 +12,11 @@ Connecta a MongoDB database para empezar operaciones.
 
 ### Funciones CRUD
 
-Todas las funciones de CRUD devuelven un grupo de datos: 'Success', que es 'true' si tuvo exito la funcion, y 'false' sino.
-'data' es el resultado de la funcion, la cual depende de la funcion especifica y los argumentos que tiene.
-'message' devuelve un comentario informando sobre el exito, o detallando la falla de la funcion.
+Todas las funciones de CRUD devuelven un grupo de datos: 
+
+1. 'Success', que es 'true' si tuvo exito la funcion, y 'false' sino.
+2. 'data' es el resultado de la funcion, la cual depende de la funcion especifica y los argumentos que tiene.
+3. 'message' devuelve un comentario informando sobre el exito, o detallando la falla de la funcion.
 
 ### getAllCats()
 
@@ -44,19 +46,19 @@ Busca a un gato con el mismo id que recibio mediante el argumento, y lo devuelve
 
 ## Configuración
 
-1. Clona el repositorio:
+1. Clonar el repositorio:
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/piccioli-luca/utn-backend
     ```
 
-2. Navega al directorio del proyecto:
+2. Navegar al directorio del proyecto:
 
     ```bash
-    cd CRUD
+    cd <directorio>
     ```
 
-3. Instala las dependencias (si aplica):
+3. Instalar las dependencias:
 
     ```bash
     npm install
