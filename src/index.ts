@@ -1,8 +1,10 @@
 import { connect, version, Schema, model } from "mongoose";
 process.loadEnvFile();
 
+// Load environment variables from .env file
 const URI_DB = process.env.URI_DB || "";
 
+// Connects to MongoDB and logs the connection status.
 const connectMongoDB = async () => {
     try {
     await connect(URI_DB)
@@ -12,6 +14,8 @@ const connectMongoDB = async () => {
     }
 }
 
+// Schema for the Cat model.
+// Defines the structure of the Cat documents in the database.
 const catSchema = new Schema({
     name: { type: String, required: true },
     age: { type: Number, required: false, default: null },
@@ -23,8 +27,10 @@ const catSchema = new Schema({
     versionKey: false,
 })
 
+// Model for the Cat schema.
 const Cat = model("Cat", catSchema);
 
+// Interface for the Cat model.
 interface ICat {
     name: string;
     color: string;
@@ -34,6 +40,7 @@ interface ICat {
     weight_kg: number | null;
 }
 
+// Returns all cats from the database.
 const getAllCats = async () => {
     try {
         const cats = await Cat.find();
@@ -51,6 +58,7 @@ const getAllCats = async () => {
     }
 }
 
+// Updates a cat in the database.
 const updateCat = async (id: string, updatedCatData: Partial<ICat>) => {
     try {
         const cat = await Cat.findByIdAndUpdate(id, updatedCatData, { new: true });
@@ -74,6 +82,7 @@ const updateCat = async (id: string, updatedCatData: Partial<ICat>) => {
     }
 }
 
+// Creates a new cat in the database.
 const createCat = async (newCatData: ICat) => {
     try {
 
@@ -94,6 +103,7 @@ const createCat = async (newCatData: ICat) => {
     }
 }
 
+// Deletes a cat from the database.
 const deleteCat = async (id: string) => {
     try {
         const deletedCat = await Cat.findByIdAndDelete(id);
@@ -117,6 +127,7 @@ const deleteCat = async (id: string) => {
     }
 }
 
+// Retrieves a cat by its ID from the database.
 const getcatbyID = async (id: string) => {
     try {
         const cat = await Cat.findById(id);
@@ -140,6 +151,9 @@ const getcatbyID = async (id: string) => {
     }
 }
 
+// Main function.
+// Connects to MongoDB.
+// Currently retrieves all cats and logs them. Insert code here.
 const main = async () => {
     await connectMongoDB();
     const cats = await getAllCats();
