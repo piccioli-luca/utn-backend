@@ -160,12 +160,12 @@ const main = async () => {
     // Example cat creation.
     /*
     createCat({
-        name: "Mittens",
-        age: 2,
+        name: "Diana",
+        age: 3,
         weight_kg: 4,
-        breed: "Siamese",
-        owner: "John Doe",
-        color: "Brown"})
+        breed: "Fluffy",
+        owner: "Luca Piccioli",
+        color: "Gray"})
     */
 
     const cats = await getAllCats();
