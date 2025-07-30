@@ -1,40 +1,32 @@
-import { connect } from "mongoose";
-import { Cat, ICat } from "./Cat";
-import { getAllCatsRaw, getAllCats, updateCat, createCat, deleteCat, getcatbyID } from "./CRUD";
-process.loadEnvFile();
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import { Cat } from './Cat'; // Adjust path if needed
 
-// Load environment variables from .env file
-const URI_DB = process.env.URI_DB || "";
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-// Connects to MongoDB and logs the connection status.
-const connectMongoDB = async () => {
-    try {
-    await connect(URI_DB)
-    console.log("MongoDB connected");
-    } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-    }
-}
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/db-utn-crud');
 
-// Main function.
-// Connects to MongoDB.
-// Currently retrieves all cats and logs them. Insert code here.
-const main = async () => {
-    await connectMongoDB();
+// Search route
+app.get('/api/search', async (req, res) => {
+  const q = req.query.q as string;
+  if (!q) return res.json([]);
 
-    // Example cat creation.
-    /*
-    createCat({
-        name: "Diana",
-        age: 3,
-        weight_kg: 4,
-        breed: "Fluffy",
-        owner: "Luca Piccioli",
-        color: "Gray"})
-    */
+  try {
+    console.log("Incoming search:", req.query.q);
+    const cats = await Cat.find({ name: { $regex: q, $options: 'i' } });
+    res.json(cats);
+    console.log("Results found:", cats);
+    const allCats = await Cat.find({});
+    console.log("All cats:", allCats);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
-    const cats = await getAllCatsRaw();
-    console.log(cats);
-}
-
-main();
+app.listen(3000, () => {
+  console.log('Backend server running at http://localhost:3000');
+});
