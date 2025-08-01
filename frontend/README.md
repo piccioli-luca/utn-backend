@@ -1,69 +1,24 @@
-# React + TypeScript + Vite
+# Aplicación de Búsqueda de Gatos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta es la aplicación frontend para la base de datos de gatos. Para modificar el contenido de la base de datos, consulta el archivo README.md del proyecto backend.
+La aplicación permite buscar gatos por nombre, mostrando todos los gatos cuyo nombre coincida con el texto ingresado, junto con su edad, peso, raza, dueño y color.
+Las variables adicionales solo aparecerán si fueron completadas en la ficha del gato; de lo contrario, no se mostrarán.
 
-Currently, two official plugins are available:
+¡Nota! La interfaz de la aplicación está en español, pero el código está en inglés.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Variables de los gatos:
 
-## Expanding the ESLint configuration
+- _id: Code-only variable that distinguishes each cat
+- name: Only required variable.
+- age
+- weight_kg: Weight in kilograms.
+- breed
+- owner
+- color
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Dependencias
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Lenguaje de programación: Javascript, Typescript
+- Dependencias de desarrollo: ts-node-dev: 2.0.0, typescript 5.8.3, MongoDB 1.46.2
+- Dependencias: mongoose 1.46.2
