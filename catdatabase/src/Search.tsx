@@ -9,27 +9,34 @@ interface Cat {
 export default function Search() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Cat[]>([]);
+  const [initialState, setInitialState] = useState(1);
 
   const handleSearch = async () => {
     const res = await fetch(`http://localhost:3000/api/search?q=${encodeURIComponent(query)}`);
     const data = await res.json();
     setResults(data);
+    setInitialState(0);
   };
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Search cats by name..."
+        placeholder="Escriba el nombre del gato"
         value={query}
         onChange={e => setQuery(e.target.value)}
+        onKeyDown={e => {
+          if (e.key === "Enter") {
+            handleSearch();
+          }
+        }}
       />
       <button onClick={handleSearch}>Search</button>
 
-      {results.length === 0 && <p>No results found</p>}
+      {initialState === 0 && results.length === 0 && <p>Ningun gato encontrado</p>}
       <ul>
         {results.map((cat: Cat) => (
-          <li key={cat._id}>{cat.name} ({cat.age} years)</li>
+          <li key={cat._id}>{cat.name}{cat.age !== null ? `, ${cat.age} años` : ''}</li>
         ))}
       </ul>
     </div>
