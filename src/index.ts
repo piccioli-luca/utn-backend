@@ -2,13 +2,16 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import { Cat } from './Cat'; // Adjust path if needed
+import dotenv from 'dotenv';
+dotenv.config();
+const URI_DB: string = process.env.URI_DB || 'mongodb://localhost:27017/mydatabase';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/db-utn-crud');
+mongoose.connect(URI_DB);
 
 // Search route
 app.get('/api/search', async (req, res) => {
@@ -27,6 +30,8 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('Backend server running at http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Backend server running at http://localhost:${PORT}`);
 });
+

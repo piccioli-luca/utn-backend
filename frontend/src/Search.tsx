@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+const BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 interface Cat {
   _id: string;
   name: string;
@@ -12,7 +12,7 @@ export default function Search() {
   const [initialState, setInitialState] = useState(1);
 
   const handleSearch = async () => {
-    const res = await fetch(`http://localhost:3000/api/search?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`${BACKEND_URL}/api/search?q=${encodeURIComponent(query)}`);
     const data = await res.json();
     setResults(data);
     setInitialState(0);
