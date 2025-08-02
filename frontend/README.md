@@ -8,10 +8,10 @@ Las variables adicionales solo aparecerán si fueron completadas en la ficha del
 
 Variables de los gatos:
 
-- _id: Code-only variable that distinguishes each cat
-- name: Only required variable.
+- _id: Variable solo visible en codigo que identifica cada gato.
+- name: Es la unica variable necesaria para un gato.
 - age
-- weight_kg: Weight in kilograms.
+- weight_kg: Peso en kilogramos
 - breed
 - owner
 - color
