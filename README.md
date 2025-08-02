@@ -2,6 +2,10 @@
 
 Este projecto contiene las herramientas para manejar un database de gatos!
 
+## Aplicacion frontend
+
+El projecto include una aplicacion frontend que permite buscar a los gatos en la base de datos por nombre. Para conocer como se utiliza, lea el README en el folder frontend.
+
 ## Funciones
 
 Todas las funciones manejan los errores y en completo forman un CRUD.
