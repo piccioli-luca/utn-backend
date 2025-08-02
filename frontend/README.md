@@ -22,3 +22,10 @@ Variables de los gatos:
 - Lenguaje de programación: Javascript, Typescript
 - Dependencias de desarrollo: ts-node-dev: 2.0.0, typescript 5.8.3, MongoDB 1.46.2
 - Dependencias: mongoose 1.46.2
+
+## .env
+
+Ademas de URI_DB, tambien es necesario configurar VITE_BACKEND_URL. Estas son las definiciones por defecto
+
+URI_DB=mongodb://localhost:27017/your-database-here
+VITE_BACKEND_URL=http://localhost:3000
